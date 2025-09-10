@@ -1,4 +1,6 @@
 
+import 'package:best_seller_2/features/login/screen/login_screen.dart';
+import 'package:best_seller_2/features/signup/screen/sign_up_screen.dart';
 import 'package:best_seller_2/features/splash/screen/splash_screen.dart';
 import 'package:best_seller_2/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' : (context) => SplashScreen(),
+        '/account': (context) => SignUpScreen(),
+        '/login'  : (context) => LoginScreen(),
       },
       title: 'Best Seller',
       theme: app_theme,
