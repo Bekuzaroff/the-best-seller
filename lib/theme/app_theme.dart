@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 ThemeData app_theme = ThemeData(
+        progressIndicatorTheme: ProgressIndicatorThemeData(
+          color: Color(0xFF66FF7D)
+        ),
         cardTheme: CardThemeData(
           color: Color(0xFF2B2A2A),
           margin: EdgeInsets.all(8),
