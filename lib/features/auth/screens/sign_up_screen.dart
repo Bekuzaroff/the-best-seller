@@ -8,13 +8,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
   final TextEditingController username_contr = TextEditingController();
   final TextEditingController email_contr = TextEditingController();
   final TextEditingController password_contr = TextEditingController();
   final TextEditingController conf_pass_contr = TextEditingController();
-  
+
   SignUpScreen({super.key});
 
   @override
@@ -22,6 +23,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +33,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         bloc: GetIt.I<SignUpBloc>(),
         builder: (context, state) {
           if (state is SignUpStateSuccess) {
+            Future.delayed( Duration.zero, () async {
+              await GetIt.I<SharedPreferences>().setString('access_token', state.token);
+            });
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushReplacementNamed(context, "/home");
             });

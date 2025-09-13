@@ -14,16 +14,15 @@ class SignUpBloc extends Bloc<SignUpBlocEvent, SignUpState> {
       
       try{
       var data = await GetIt.I<SignUpRepository>().signUp(
-        event.username, 
-        event.email, 
-        event.password, 
-        event.confirmPassword
+        username: event.username, 
+        email: event.email, 
+        password: event.password, 
+        confirmPassword: event.confirmPassword
         );
        
       if(data['status'] == 'success'){
         emit(SignUpStateSuccess(token: data['data']));
       } else {
-        print(data);
         emit(SignUpStateError(data['message']));
       }
       }catch(e){
