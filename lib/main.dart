@@ -1,8 +1,8 @@
 
-import 'package:best_seller_2/features/login/screen/login_screen.dart';
-import 'package:best_seller_2/features/signup/bloc/sign_up_bloc.dart';
-import 'package:best_seller_2/features/signup/repository/sign_up_repository.dart';
-import 'package:best_seller_2/features/signup/screen/sign_up_screen.dart';
+import 'package:best_seller_2/features/auth/screens/login_screen.dart';
+import 'package:best_seller_2/features/auth/bloc/signup/sign_up_bloc.dart';
+import 'package:best_seller_2/features/auth/repository/sign_up_repository.dart';
+import 'package:best_seller_2/features/auth/screens/sign_up_screen.dart';
 import 'package:best_seller_2/features/splash/screen/splash_screen.dart';
 import 'package:best_seller_2/home.dart';
 import 'package:best_seller_2/theme/app_theme.dart';

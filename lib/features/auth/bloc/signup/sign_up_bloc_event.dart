@@ -1,13 +1,13 @@
 class SignUpBlocEvent {
-  final String user_name;
+  final String username;
   final String email;
   final String password;
-  final String confirm_password;
+  final String confirmPassword;
 
   SignUpBlocEvent({
-    required this.user_name,
+    required this.username,
     required this.email,
     required this.password,
-    required this.confirm_password,
+    required this.confirmPassword,
   });
 }

@@ -1,4 +1,4 @@
-import 'package:best_seller_2/features/signup/repository/sign_up_repository.dart';
+import 'package:best_seller_2/features/auth/repository/sign_up_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -6,33 +6,33 @@ import 'sign_up_bloc_state.dart';
 import 'sign_up_bloc_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpBloc extends Bloc<SignUpBlocEvent, SignUpBlocInitial> {
-  SignUpBloc() : super(SignUpBlocInitial()) {
+class SignUpBloc extends Bloc<SignUpBlocEvent, SignUpState> {
+  SignUpBloc() : super(SignUpStateInitial()) {
 
     on<SignUpBlocEvent>((event, emit) async {
-      emit(SignUpBlocLoading());
+      emit(SignUpStateLoading());
       
       try{
       var data = await GetIt.I<SignUpRepository>().signUp(
-        event.user_name, 
+        event.username, 
         event.email, 
         event.password, 
-        event.confirm_password
+        event.confirmPassword
         );
        
       if(data['status'] == 'success'){
-        emit(SignUpBlocSuccess(token: data['data']));
+        emit(SignUpStateSuccess(token: data['data']));
       } else {
         print(data);
-        emit(SignUpBlocError(data['message']));
+        emit(SignUpStateError(data['message']));
       }
       }catch(e){
         if (e is DioException) {
-          emit(SignUpBlocError(
+          emit(SignUpStateError(
             '${e.response?.data['message']}'
           ));
         } else {
-          emit(SignUpBlocError(e.toString()));
+          emit(SignUpStateError(e.toString()));
         }
       }
     });

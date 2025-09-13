@@ -1,16 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_up_response.dart';
+part of 'auth_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SignUpResponse _$SignUpResponseFromJson(Map<String, dynamic> json) =>
-    SignUpResponse(
+AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) =>
+    AuthResponse(
       status: json['status'] as String,
       data: json['data'] as String,
     );
 
-Map<String, dynamic> _$SignUpResponseToJson(SignUpResponse instance) =>
+Map<String, dynamic> _$AuthResponseToJson(AuthResponse instance) =>
     <String, dynamic>{'status': instance.status, 'data': instance.data};

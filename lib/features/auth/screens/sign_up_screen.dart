@@ -1,6 +1,6 @@
-import 'package:best_seller_2/features/signup/bloc/sign_up_bloc.dart';
-import 'package:best_seller_2/features/signup/bloc/sign_up_bloc_event.dart';
-import 'package:best_seller_2/features/signup/bloc/sign_up_bloc_state.dart';
+import 'package:best_seller_2/features/auth/bloc/signup/sign_up_bloc.dart';
+import 'package:best_seller_2/features/auth/bloc/signup/sign_up_bloc_event.dart';
+import 'package:best_seller_2/features/auth/bloc/signup/sign_up_bloc_state.dart';
 import 'package:best_seller_2/shared/widgets/complete_button.dart';
 import 'package:best_seller_2/shared/widgets/edit_text.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +26,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: BlocBuilder<SignUpBloc, SignUpBlocInitial>(
+      body: BlocBuilder<SignUpBloc, SignUpState>(
         bloc: GetIt.I<SignUpBloc>(),
         builder: (context, state) {
-          if (state is SignUpBlocSuccess) {
+          if (state is SignUpStateSuccess) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.pushReplacementNamed(context, "/home");
             });
@@ -72,15 +72,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 on_tap: () {
                                   GetIt.I<SignUpBloc>().add(
                                     SignUpBlocEvent(
-                                      user_name: widget.username_contr.text, 
+                                      username: widget.username_contr.text, 
                                       email: widget.email_contr.text, 
                                       password: widget.password_contr.text, 
-                                      confirm_password: widget.conf_pass_contr.text
+                                      confirmPassword: widget.conf_pass_contr.text
                                     )
                                   );
                                 },
                               ),
-                              if (state is SignUpBlocError)
+                              if (state is SignUpStateError)
                                 Center(
                                   child: Padding(
                                     padding: EdgeInsets.all(10),
@@ -101,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               
               // Оверлей загрузки с темным фоном на ВЕСЬ экран
-              if (state is SignUpBlocLoading)
+              if (state is SignUpStateLoading)
                 Container(
                   color: Colors.black.withOpacity(0.7), // Темный фон на весь экран
                   child: Center(
